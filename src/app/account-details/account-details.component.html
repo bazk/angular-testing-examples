@@ -1,0 +1,27 @@
+<mat-toolbar color="primary">
+  <a mat-icon-button [routerLink]="['/']">
+    <mat-icon aria-hidden="false" aria-label="Back to main screen">arrow_back</mat-icon>
+  </a>
+
+  <span class="title">Account: {{ accountName }}</span>
+</mat-toolbar>
+
+<table mat-table [dataSource]="transactions | async">
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef>Data</th>
+    <td mat-cell *matCellDef="let element">{{element.createdAt | date:'fullDate' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Descrição</th>
+    <td mat-cell *matCellDef="let element">{{element.description}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="value">
+    <th mat-header-cell *matHeaderCellDef>Valor</th>
+    <td mat-cell *matCellDef="let element">{{element.value | currency:accountCurrency}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['createdAt', 'description', 'value']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['createdAt', 'description', 'value'];"></tr>
+</table>
