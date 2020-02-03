@@ -3,7 +3,7 @@
 </mat-toolbar>
 
 <mat-nav-list>
-  <a *ngFor="let account of accounts | async" mat-list-item [title]="account.name" [routerLink]="['/accounts', account.id]">
+  <a *ngFor="let account of accounts | async" mat-list-item [title]="account.name" (click)="navigateToDetails(account)">
     {{ account.name }}
   </a>
 </mat-nav-list>
